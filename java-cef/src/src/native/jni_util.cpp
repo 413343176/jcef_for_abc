@@ -11,6 +11,8 @@ namespace {
 
 JavaVM *g_jvm = NULL;
 
+jobject g_javaClassLoader = NULL;
+
 }  // namespace
 
 void SetJVM(JavaVM* jvm) {
@@ -57,6 +59,44 @@ void DetachFromThread(bool *mustDetach) {
     g_jvm->DetachCurrentThread();
 }
 
+void SetJavaClassLoader(JNIEnv *env, jobject javaClassLoader) {
+  ASSERT(!g_javaClassLoader);
+  g_javaClassLoader = env->NewGlobalRef(javaClassLoader);
+}
+
+jclass FindClass(JNIEnv* env, const char* class_name) {
+  ASSERT(g_javaClassLoader);
+
+  size_t length = strlen(class_name);
+  char *new_class_name = (char *)malloc(sizeof(char) * length + 1);
+  for (size_t i = 0; i < length; i++) {
+	  if (class_name[i] == '/') {
+		  new_class_name[i] = '.';
+	  } else {
+		  new_class_name[i] = class_name[i];
+	  }
+  }
+  new_class_name[length] = '\0';
+
+  jstring classNameJString = env->NewStringUTF(new_class_name);
+  jobject result = NULL;
+
+  JNI_CALL_METHOD(env, g_javaClassLoader,
+      "loadClass",
+      "(Ljava/lang/String;)Ljava/lang/Class;",
+      Object,
+      result,
+      classNameJString);
+
+  env->DeleteLocalRef(classNameJString);
+
+  free(new_class_name);
+
+  return static_cast<jclass>(result);
+}
+
+
+
 jobject NewJNIObject(JNIEnv* env, jclass cls) {
   jmethodID initID = env->GetMethodID(cls, "<init>", "()V");
   if(initID == 0) {
@@ -74,7 +114,7 @@ jobject NewJNIObject(JNIEnv* env, jclass cls) {
 }
 
 jobject NewJNIObject(JNIEnv* env, const char* class_name) {
-  jclass cls = env->FindClass(class_name);
+  jclass cls = FindClass(env, class_name);
   if (!cls)
     return NULL;
 
@@ -82,7 +122,7 @@ jobject NewJNIObject(JNIEnv* env, const char* class_name) {
 }
 
 jobject NewJNIObject(JNIEnv* env, const char* class_name, const char* sig, ...) {
-  jclass cls = env->FindClass(class_name);
+  jclass cls = FindClass(env, class_name);
   if (!cls)
     return NULL;
 
@@ -213,7 +253,7 @@ jobject NewJNICookie(JNIEnv* env, const CefCookie& cookie) {
 CefCookie GetJNICookie(JNIEnv* env, jobject jcookie) {
   CefCookie cookie;
 
-  jclass cls = env->FindClass("org/cef/network/CefCookie");
+  jclass cls = FindClass(env, "org/cef/network/CefCookie");
   if (!cls)
     return cookie;
 
@@ -271,7 +311,7 @@ CefMessageRouterConfig GetJNIMessageRouterConfig(JNIEnv* env, jobject jConfig) {
   if (jConfig == NULL)
     return config;
   jclass cls =
-      env->FindClass("org/cef/browser/CefMessageRouter$CefMessageRouterConfig");
+      FindClass(env, "org/cef/browser/CefMessageRouter$CefMessageRouterConfig");
   if (cls == NULL)
     return config;
 
@@ -362,7 +402,7 @@ jobjectArray NewJNIStringArray(JNIEnv* env,
   if(vals.empty())
     return NULL;
 
-  jclass cls = env->FindClass("java/lang/String");
+  jclass cls = FindClass(env, "java/lang/String");
   if (!cls)
     return NULL;
 
@@ -524,7 +564,7 @@ bool CallJNIMethodC_V(JNIEnv* env, jclass cls, jobject obj,
 CefPageRange GetJNIPageRange(JNIEnv* env, jobject obj) {
   CefPageRange range;
 
-  jclass cls = env->FindClass("org/cef/misc/CefPageRange");
+  jclass cls = FindClass(env, "org/cef/misc/CefPageRange");
   if (!cls)
     return range;
 
@@ -537,7 +577,7 @@ CefPageRange GetJNIPageRange(JNIEnv* env, jobject obj) {
 }
 
 jobject NewJNIPageRange(JNIEnv* env, const CefPageRange& range) {
-  jclass cls = env->FindClass("org/cef/misc/CefPageRange");
+  jclass cls = FindClass(env, "org/cef/misc/CefPageRange");
   if (!cls)
     return NULL;
 
@@ -557,7 +597,7 @@ jobject NewJNIPageRange(JNIEnv* env, const CefPageRange& range) {
 CefSize GetJNISize(JNIEnv* env, jobject obj) {
   CefSize size;
 
-  jclass cls = env->FindClass("java/awt/Dimension");
+  jclass cls = FindClass(env, "java/awt/Dimension");
   if (!cls)
     return size;
 
@@ -572,7 +612,7 @@ CefSize GetJNISize(JNIEnv* env, jobject obj) {
 CefRect GetJNIRect(JNIEnv* env, jobject obj) {
   CefRect rect;
 
-  jclass cls = env->FindClass("java/awt/Rectangle");
+  jclass cls = FindClass(env, "java/awt/Rectangle");
   if (!cls)
     return rect;
 
@@ -589,7 +629,7 @@ CefRect GetJNIRect(JNIEnv* env, jobject obj) {
 }
 
 jobject NewJNIRect(JNIEnv* env, const CefRect& rect) {
-  jclass cls = env->FindClass("java/awt/Rectangle");
+  jclass cls = FindClass(env, "java/awt/Rectangle");
   if (!cls)
     return NULL;
 
@@ -613,7 +653,7 @@ jobjectArray NewJNIRectArray(JNIEnv* env,
   if(vals.empty())
     return NULL;
 
-  jclass cls = env->FindClass("java/awt/Rectangle");
+  jclass cls = FindClass(env, "java/awt/Rectangle");
   if (!cls)
     return NULL;
 
@@ -629,7 +669,7 @@ jobjectArray NewJNIRectArray(JNIEnv* env,
 }
 
 bool GetJNIPoint(JNIEnv* env, jobject obj, int* x, int* y) {
-  jclass cls = env->FindClass("java/awt/Point");
+  jclass cls = FindClass(env, "java/awt/Point");
   if (!cls)
     return false;
 
@@ -643,7 +683,7 @@ bool GetJNIPoint(JNIEnv* env, jobject obj, int* x, int* y) {
 
 // Create a new java.awt.Point.
 jobject NewJNIPoint(JNIEnv* env, int x, int y) {
-  jclass cls = env->FindClass("java/awt/Point");
+  jclass cls = FindClass(env, "java/awt/Point");
   if (!cls)
     return NULL;
 
@@ -666,7 +706,7 @@ CefSettings GetJNISettings(JNIEnv* env, jobject obj) {
   if (!obj)
     return settings;
 
-  jclass cls = env->FindClass("org/cef/CefSettings");
+  jclass cls = FindClass(env, "org/cef/CefSettings");
   if (!cls)
     return settings;
 
@@ -782,7 +822,7 @@ jobjectArray GetAllJNIBrowser(JNIEnv* env, jobject jclientHandler) {
 }
 
 jobject GetJNIEnumValue(JNIEnv* env, const char* class_name, const char* enum_valname) {
-  jclass sourceCls = env->FindClass(class_name);
+  jclass sourceCls = FindClass(env, class_name);
   if (!sourceCls)
     return NULL;
 

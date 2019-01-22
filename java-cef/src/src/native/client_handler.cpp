@@ -43,9 +43,11 @@ ClientHandler::ClientHandler(JNIEnv* env, jobject handler) {
 }
 
 ClientHandler::~ClientHandler() {
+	/*
   BEGIN_ENV(env)
   env->DeleteGlobalRef(jhandler_);
   END_ENV(env)
+  */
 }
 CefRefPtr<CefContextMenuHandler> ClientHandler::GetContextMenuHandler() {
   CefRefPtr<CefContextMenuHandler> result = NULL;
