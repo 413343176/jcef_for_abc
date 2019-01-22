@@ -252,23 +252,22 @@ bool IsJNIEnumValue(JNIEnv* env, jobject jenum, const char* class_name, const ch
 // will be removed from that object.
 template <class T>
 bool SetCefForJNIObject(JNIEnv* env, jobject obj, T* base, const char* varName) {
-  jstring identifer = env->NewStringUTF(varName);
-  jlong previousValue = 0;
   if (!obj)
     return false;
-  JNI_CALL_METHOD(env, obj, "getNativeRef", "(Ljava/lang/String;)J", Long, previousValue, identifer);
-
+  jstring identifer = env->NewStringUTF(varName);
+  jlong previousValue = 0;
+  JNI_CALL_METHOD(env, obj, "getNativeRef", "(Ljava/lang/String;)J", Long, previousValue, identifer);  
   T* oldbase = reinterpret_cast<T*>(previousValue);
   if(oldbase) {
     // Remove a reference from the previous base object.
     oldbase->Release();
   }
-
   JNI_CALL_VOID_METHOD(env, obj, "setNativeRef", "(Ljava/lang/String;J)V", identifer, (jlong)base);
   if(base) {
     // Add a reference to the new base object.
     base->AddRef();
   }
+  env->DeleteLocalRef(identifer);
   return true;
 }
 

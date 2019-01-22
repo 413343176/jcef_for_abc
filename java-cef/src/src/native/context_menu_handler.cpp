@@ -29,9 +29,10 @@ void ContextMenuHandler::OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
   if (!jparams)
     return;
   jobject jmodel = NewJNIObject(env, "org/cef/callback/CefMenuModel_N");
-  if (!jmodel)
-    return;
-
+  if (!jmodel){
+	  env->DeleteLocalRef(jparams);
+	  return;
+  }
   SetCefForJNIObject(env, jparams, params.get(), "CefContextMenuParams");
   SetCefForJNIObject(env, jmodel, model.get(), "CefMenuModel");
 
@@ -46,6 +47,8 @@ void ContextMenuHandler::OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
   // Do not keep references to |params| or |model| outside of this callback.
   SetCefForJNIObject<CefContextMenuParams>(env, jparams, NULL, "CefContextMenuParams");
   SetCefForJNIObject<CefMenuModel>(env, jmodel, NULL, "CefMenuModel");
+  env->DeleteLocalRef(jparams);
+  env->DeleteLocalRef(jmodel);
 }
 
 bool ContextMenuHandler::OnContextMenuCommand(CefRefPtr<CefBrowser> browser,
@@ -75,6 +78,7 @@ bool ContextMenuHandler::OnContextMenuCommand(CefRefPtr<CefBrowser> browser,
 
   // Do not keep references to |params| or |model| outside of this callback.
   SetCefForJNIObject<CefContextMenuParams>(env, jparams, NULL, "CefContextMenuParams");
+  env->DeleteLocalRef(jparams);
   return (result != JNI_FALSE);
 }
 

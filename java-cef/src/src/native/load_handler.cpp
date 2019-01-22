@@ -67,12 +67,16 @@ void LoadHandler::OnLoadError(CefRefPtr<CefBrowser> browser,
   JNIEnv* env = GetJNIEnv();
   if (!env)
     return;
+  jobject jerrorText = NewJNIString(env, errorText);
+  jobject jfailedUrl = NewJNIString(env, failedUrl);
   JNI_CALL_VOID_METHOD(env, jhandler_,
                        "onLoadError",
                        "(Lorg/cef/browser/CefBrowser;ILorg/cef/handler/CefLoadHandler$ErrorCode;Ljava/lang/String;Ljava/lang/String;)V",
                        GetJNIBrowser(browser),
                        frame->GetIdentifier(),
                        NewJNIErrorCode(env, errorCode),
-                       NewJNIString(env, errorText),
-                       NewJNIString(env, failedUrl));
+					   jerrorText,
+					   jfailedUrl);
+  env->DeleteLocalRef(jfailedUrl);
+  env->DeleteLocalRef(jerrorText);
 }

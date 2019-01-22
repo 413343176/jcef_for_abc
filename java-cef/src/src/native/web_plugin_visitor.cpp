@@ -39,5 +39,6 @@ bool WebPluginInfoVisitor::Visit(CefRefPtr<CefWebPluginInfo> info,
                        (jint)total);
 
   SetCefForJNIObject<CefWebPluginInfo>(env, jinfo, NULL, "CefWebPluginInfo");
+  env->DeleteLocalRef(jinfo);
   return jresult != JNI_FALSE;
 }

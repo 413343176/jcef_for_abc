@@ -25,9 +25,11 @@ void RunFileDialogCallback::OnFileDialogDismissed(
   JNIEnv* env = GetJNIEnv();
   if (!env)
     return;
+  jobject jfile_paths = NewJNIStringVector(env, file_paths);
   JNI_CALL_VOID_METHOD(env, jcallback_,
                        "onFileDialogDismissed",
                        "(Lorg/cef/browser/CefBrowser;Ljava/util/Vector;)V",
                        GetJNIBrowser(browser_host->GetBrowser()),
-                       NewJNIStringVector(env, file_paths));
+					   jfile_paths);
+  env->DeleteLocalRef(jfile_paths);
 }

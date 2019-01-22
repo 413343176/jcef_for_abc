@@ -32,23 +32,29 @@ void DownloadHandler::OnBeforeDownload(
   SetCefForJNIObject(env, jdownloadItem, download_item.get(), "CefDownloadItem");
 
   jobject jcallback  = NewJNIObject(env, "org/cef/callback/CefBeforeDownloadCallback_N");
-  if (!jcallback)
-    return;
+  if (!jcallback){
+	  env->DeleteLocalRef(jdownloadItem);
+	  return;
+  }
   SetCefForJNIObject(env, jcallback, callback.get(), "CefBeforeDownloadCallback");
 
+  jstring jsuggested_name = NewJNIString(env, suggested_name);
   JNI_CALL_VOID_METHOD(env, jhandler_, 
                        "onBeforeDownload", 
                        "(Lorg/cef/browser/CefBrowser;Lorg/cef/callback/CefDownloadItem;"
                        "Ljava/lang/String;Lorg/cef/callback/CefBeforeDownloadCallback;)V",
                        GetJNIBrowser(browser),
                        jdownloadItem,
-                       NewJNIString(env, suggested_name),
+                       jsuggested_name,
                        jcallback);
 
   // delete CefDownloadItem reference from Java because the object
   // is only valid within this call
   SetCefForJNIObject<CefDownloadItem>(env, jdownloadItem,
                                       NULL, "CefDownloadItem");
+  env->DeleteLocalRef(jdownloadItem);
+  env->DeleteLocalRef(jcallback);
+  env->DeleteLocalRef(jsuggested_name);
 }
 
 void DownloadHandler::OnDownloadUpdated(
@@ -65,8 +71,10 @@ void DownloadHandler::OnDownloadUpdated(
   SetCefForJNIObject(env, jdownloadItem, download_item.get(), "CefDownloadItem");
 
   jobject jcallback  = NewJNIObject(env, "org/cef/callback/CefDownloadItemCallback_N");
-  if (!jcallback)
-    return;
+  if (!jcallback){
+	  env->DeleteLocalRef(jdownloadItem);
+	  return;
+  }
   SetCefForJNIObject(env, jcallback, callback.get(), "CefDownloadItemCallback");
 
   JNI_CALL_VOID_METHOD(env, jhandler_,
@@ -81,4 +89,6 @@ void DownloadHandler::OnDownloadUpdated(
   // is only valid within this call
   SetCefForJNIObject<CefDownloadItem>(env, jdownloadItem,
                                       NULL, "CefDownloadItem");
+  env->DeleteLocalRef(jdownloadItem);
+  env->DeleteLocalRef(jcallback);
 }

@@ -36,6 +36,7 @@ void PrintHandler::OnPrintSettings(CefRefPtr<CefPrintSettings> settings,
   // Do not keep a reference to |settings| outside of this callback.
   SetCefForJNIObject<CefPrintSettings>(env, jsettings, NULL,
       "CefPrintSettings");
+  env->DeleteLocalRef(jsettings);
 }
 
 bool PrintHandler::OnPrintDialog(bool has_selection,
@@ -66,6 +67,7 @@ bool PrintHandler::OnPrintDialog(bool has_selection,
                                               NULL,
                                               "CefPrintDialogCallback");
   }
+  env->DeleteLocalRef(jcallback);
   return (jresult != JNI_FALSE);
 }
 
@@ -83,14 +85,16 @@ bool PrintHandler::OnPrintJob(const CefString& document_name,
   SetCefForJNIObject(env, jcallback, callback.get(), "CefPrintJobCallback");
 
   jboolean jresult = JNI_FALSE;
+  jstring jdocument_name = NewJNIString(env, document_name);
+  jstring jpdf_file_path = NewJNIString(env, pdf_file_path);
   JNI_CALL_METHOD(env, jhandler_,
                   "onPrintJob",
                   "(Ljava/lang/String;Ljava/lang/String;"
                   "Lorg/cef/callback/CefPrintJobCallback;)Z",
                   Boolean,
                   jresult,
-                  NewJNIString(env, document_name),
-                  NewJNIString(env, pdf_file_path),
+				  jdocument_name,
+				  jpdf_file_path,
                   jcallback);
 
   if (jresult == JNI_FALSE) {
@@ -100,6 +104,9 @@ bool PrintHandler::OnPrintJob(const CefString& document_name,
                                               NULL,
                                               "CefPrintJobCallback");
   }
+  env->DeleteLocalRef(jpdf_file_path);
+  env->DeleteLocalRef(jdocument_name);
+  env->DeleteLocalRef(jcallback);
   return (jresult != JNI_FALSE);
 }
 
