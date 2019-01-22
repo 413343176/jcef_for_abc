@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/1762/trunk/test/variables/filelist/src
+END
+dummy.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/1762/trunk/test/variables/filelist/src/dummy.py
+END
+filelist.gyp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/790/trunk/test/variables/filelist/src/filelist.gyp
+END
+filelist2.gyp
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/1762/trunk/test/variables/filelist/src/filelist2.gyp
+END

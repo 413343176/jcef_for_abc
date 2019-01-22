@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/1749/trunk/test/target
+END
+target.gyp
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/1749/trunk/test/target/target.gyp
+END
+hello.c
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/1749/trunk/test/target/hello.c
+END
+gyptest-target.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/1749/trunk/test/target/gyptest-target.py
+END

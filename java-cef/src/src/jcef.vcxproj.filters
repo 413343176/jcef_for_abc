@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="native">
+      <UniqueIdentifier>{D56EDB24-21BF-8816-5D92-25C635122F26}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="jcef.gyp" />
+    <ClCompile Include="native\life_span_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefDownloadItemCallback_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefPrintJobCallback_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefMessageRouter_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefClientHandler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\life_span_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\dialog_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\resource_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\keyboard_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefDownloadItemCallback_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\jni_util.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefCookieManager_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefPrintSettings_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefWebPluginInfo_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\context_menu_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefResponse_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefResponse_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefMenuModel_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefAllowCertificateErrorCallback_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefCallback_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\completion_callback.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\download_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\web_plugin_visitor.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefQuotaCallback_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefPostData_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\window_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\client_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\render_handler_win.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\client_app.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefApp.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\focus_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\critical_wait.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\scheme_handler_factory.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefPostDataElement_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefWebPluginManager_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\context_menu_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\run_file_dialog_callback.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefBrowser_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefRequest_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\util.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\display_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefDownloadItem_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefURLRequest_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\render_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\client_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefPostDataElement_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefPrintDialogCallback_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefBeforeDownloadCallback_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\jni_util_win.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefMessageRouter_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefCommandLine_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefRequestContext_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefCallback_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\jcef_version.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\window_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefRequestContext_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\display_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\cookie_visitor.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\browser_process_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefQueryCallback_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\jni_util.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\keyboard_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\load_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefJSDialogCallback_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\drag_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefContextMenuParams_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\request_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\download_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefPrintSettings_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\message_router_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\geolocation_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefGeolocationCallback_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefWebPluginInfo_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\url_request_client.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefBrowser_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefDragData_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\request_context_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\critical_wait_win.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\dialog_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefMenuModel_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\write_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefQuotaCallback_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\web_plugin_visitor.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\web_plugin_unstable_callback.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\focus_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefFileDialogCallback_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\url_request_client.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefAuthCallback_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\client_app.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefWebPluginManager_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\run_file_dialog_callback.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefCookieManager_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\drag_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\request_context_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefSchemeRegistrar_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\resource_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefAllowCertificateErrorCallback_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefContextMenuParams_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefApp.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\print_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\print_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\string_visitor.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\geolocation_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\string_visitor.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefSchemeRegistrar_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefPostData_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\message_router_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefPrintJobCallback_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\jsdialog_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\completion_callback.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefBeforeDownloadCallback_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ResourceCompile Include="native\jcef_dll.rc">
+      <Filter>native</Filter>
+    </ResourceCompile>
+    <ClCompile Include="native\cookie_visitor.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefCommandLine_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefDragData_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefPrintDialogCallback_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\CefFileDialogCallback_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\web_plugin_unstable_callback.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\request_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\load_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\write_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefClientHandler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefQueryCallback_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefJSDialogCallback_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\browser_process_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\util_win.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\jsdialog_handler.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefGeolocationCallback_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\scheme_handler_factory.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefRequest_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClInclude Include="native\CefDownloadItem_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\render_handler.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+    <ClInclude Include="native\CefURLRequest_N.h">
+      <Filter>native</Filter>
+    </ClInclude>
+    <ClCompile Include="native\CefAuthCallback_N.cpp">
+      <Filter>native</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\jcef.gyp" />
+  </ItemGroup>
+</Project>
