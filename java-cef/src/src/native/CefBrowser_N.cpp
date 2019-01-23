@@ -483,12 +483,12 @@ JNIEXPORT void JNICALL Java_org_cef_browser_CefBrowser_1N_N_1RunFileDialog
   } else {
     mode = FILE_DIALOG_OPEN;
   }
-
+  
   browser->GetHost()->RunFileDialog(mode,
                                     GetJNIString(env, jtitle),
                                     GetJNIString(env, jdefaultFileName),
                                     accept_types,
-                                    new RunFileDialogCallback(env, jcallback));
+                                    0, NULL);
 }
 
 JNIEXPORT void JNICALL Java_org_cef_browser_CefBrowser_1N_N_1StartDownload

@@ -8,24 +8,24 @@
 
 JNIEXPORT void JNICALL Java_org_cef_callback_CefQuotaCallback_1N_N_1Continue
   (JNIEnv *env, jobject obj, jboolean jallow) {
-  CefRefPtr<CefQuotaCallback> callback =
-      GetCefFromJNIObject<CefQuotaCallback>(env, obj, "CefQuotaCallback");
+	CefRefPtr<CefRequestCallback> callback =
+		GetCefFromJNIObject<CefRequestCallback>(env, obj, "CefRequestCallback");
   if (!callback.get())
     return;
   callback->Continue(jallow != JNI_FALSE);
 
   // Clear the reference added in RequestHandler::OnQuotaRequest
-  SetCefForJNIObject<CefQuotaCallback>(env, obj, NULL, "CefQuotaCallback");
+  SetCefForJNIObject<CefRequestCallback>(env, obj, NULL, "CefRequestCallback");
 }
 
 JNIEXPORT void JNICALL Java_org_cef_callback_CefQuotaCallback_1N_N_1Cancel
   (JNIEnv *env, jobject obj) {
-  CefRefPtr<CefQuotaCallback> callback =
-      GetCefFromJNIObject<CefQuotaCallback>(env, obj, "CefQuotaCallback");
+	CefRefPtr<CefRequestCallback> callback =
+		GetCefFromJNIObject<CefRequestCallback>(env, obj, "CefRequestCallback");
   if (!callback.get())
     return;
   callback->Cancel();
 
   // Clear the reference added in RequestHandler::OnQuotaRequest
-  SetCefForJNIObject<CefQuotaCallback>(env, obj, NULL, "CefQuotaCallback");
+  SetCefForJNIObject<CefRequestCallback>(env, obj, NULL, "CefRequestCallback");
 }

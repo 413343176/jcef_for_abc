@@ -21,7 +21,7 @@ class DialogHandler : public CefDialogHandler {
                             const CefString& title,
                             const CefString& default_file_name,
                             const std::vector<CefString>& accept_types,
-                            CefRefPtr<CefFileDialogCallback> callback) OVERRIDE;
+                            CefRefPtr<CefFileDialogCallback> callback) ;
 
  protected:
   jobject jhandler_;

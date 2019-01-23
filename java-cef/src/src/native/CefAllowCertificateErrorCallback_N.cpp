@@ -8,14 +8,14 @@
 
 JNIEXPORT void JNICALL Java_org_cef_callback_CefAllowCertificateErrorCallback_1N_N_1Continue
   (JNIEnv *env, jobject obj, jboolean jallow) {
-  CefRefPtr<CefAllowCertificateErrorCallback> callback =
-      GetCefFromJNIObject<CefAllowCertificateErrorCallback>(
-          env, obj, "CefAllowCertificateErrorCallback");
+	CefRefPtr<CefRequestCallback> callback =
+		GetCefFromJNIObject<CefRequestCallback>(
+          env, obj, "CefRequestCallback");
   if (!callback.get())
     return;
   callback->Continue(jallow != JNI_FALSE);
 
   // Clear the reference added in RequestHandler::OnCertificateError
-  SetCefForJNIObject<CefAllowCertificateErrorCallback>(
-      env, obj, NULL, "CefAllowCertificateErrorCallback");
+  SetCefForJNIObject<CefRequestCallback>(
+      env, obj, NULL, "CefRequestCallback");
 }

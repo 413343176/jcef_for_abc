@@ -15,7 +15,7 @@ JNIEXPORT void JNICALL Java_org_cef_callback_CefFileDialogCallback_1N_N_1Continu
 
   std::vector<CefString> filePaths;
   GetJNIStringVector(env, jFilePaths, filePaths);
-  callback->Continue(filePaths);
+  callback->Continue(NULL, filePaths);
 
   // Clear the reference added in DialogHandler::OnFileDialog.
   SetCefForJNIObject<CefFileDialogCallback>(env, obj, NULL, "CefFileDialogCallback");

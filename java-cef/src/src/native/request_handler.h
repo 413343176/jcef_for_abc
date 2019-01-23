@@ -23,7 +23,7 @@ class RequestHandler : public CefRequestHandler {
 
   virtual bool OnBeforeResourceLoad(CefRefPtr<CefBrowser> browser,
                                     CefRefPtr<CefFrame> frame,
-                                    CefRefPtr<CefRequest> request) OVERRIDE;
+                                    CefRefPtr<CefRequest> request) ;
 
   virtual CefRefPtr<CefResourceHandler> GetResourceHandler(
                                     CefRefPtr<CefBrowser> browser,
@@ -47,7 +47,7 @@ class RequestHandler : public CefRequestHandler {
   virtual bool OnQuotaRequest(CefRefPtr<CefBrowser> browser,
                               const CefString& origin_url,
                               int64 new_size,
-                              CefRefPtr<CefQuotaCallback> callback) OVERRIDE;
+							  CefRefPtr<CefRequestCallback> callback) OVERRIDE;
 
   virtual void OnProtocolExecution(CefRefPtr<CefBrowser> browser,
                                    const CefString& url,
@@ -56,7 +56,7 @@ class RequestHandler : public CefRequestHandler {
   virtual bool OnCertificateError(
       cef_errorcode_t cert_error,
       const CefString& request_url,
-      CefRefPtr<CefAllowCertificateErrorCallback> callback) OVERRIDE;
+	  CefRefPtr<CefRequestCallback> callback) ;
 
   virtual bool OnBeforePluginLoad(CefRefPtr<CefBrowser> browser,
                                   const CefString& url,

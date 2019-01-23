@@ -188,7 +188,7 @@ bool RequestHandler::GetAuthCredentials(CefRefPtr<CefBrowser> browser,
 bool RequestHandler::OnQuotaRequest(CefRefPtr<CefBrowser> browser,
                                     const CefString& origin_url,
                                     int64 new_size,
-                                    CefRefPtr<CefQuotaCallback> callback) {
+									CefRefPtr<CefRequestCallback> callback) {
   JNIEnv* env = GetJNIEnv();
   if (!env)
     return false;
@@ -215,7 +215,7 @@ bool RequestHandler::OnQuotaRequest(CefRefPtr<CefBrowser> browser,
   if (result == JNI_FALSE) {
     // If the java method returns "false", the callback won't be used and therefore
     // the reference can be removed.
-    SetCefForJNIObject<CefQuotaCallback>(env, jcallback, NULL, "CefQuotaCallback");
+	  SetCefForJNIObject<CefRequestCallback>(env, jcallback, NULL, "CefRequestCallback");
   }
   env->DeleteLocalRef(jcallback);
   return (result != JNI_FALSE);
@@ -244,7 +244,7 @@ void RequestHandler::OnProtocolExecution(CefRefPtr<CefBrowser> browser,
                                    
 bool RequestHandler::OnCertificateError(cef_errorcode_t cert_error,
                                         const CefString& request_url,
-                                        CefRefPtr<CefAllowCertificateErrorCallback> callback) {
+										CefRefPtr<CefRequestCallback> callback) {
   JNIEnv* env = GetJNIEnv();
   if (!env)
     return false;
@@ -270,8 +270,8 @@ bool RequestHandler::OnCertificateError(cef_errorcode_t cert_error,
   if (result == JNI_FALSE) {
     // If the java method returns "false", the callback won't be used and therefore
     // the reference can be removed.
-    SetCefForJNIObject<CefAllowCertificateErrorCallback>(env, jcallback, NULL, 
-                                                         "CefAllowCertificateErrorCallback");
+	  SetCefForJNIObject<CefRequestCallback>(env, jcallback, NULL,
+                                                         "CefRequestCallback");
   }
   env->DeleteLocalRef(jcallback);
   return (result != JNI_FALSE);
