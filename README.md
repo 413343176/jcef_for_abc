@@ -9,3 +9,9 @@ cef二进制包地址
 
 cef解压后，放到下面java-cef\src\src\third_party\cef\win32目录下，可以直接编译
 
+
+4f3d9f7节点用于编译2171版本cef
+cef_binary_3.2171.2069_windows32
+
+
+
