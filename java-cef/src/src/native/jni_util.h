@@ -276,9 +276,10 @@ template <class T>
 T* GetCefFromJNIObject(JNIEnv* env, jobject obj, const char* varName) {
   jstring identifer = env->NewStringUTF(varName);
   jlong previousValue = 0;
-  if (obj != NULL)
+  if (obj != NULL){
     JNI_CALL_METHOD(env, obj, "getNativeRef", "(Ljava/lang/String;)J", Long, previousValue, identifer);
-
+  }
+  env->DeleteLocalRef(identifer);
   if (previousValue != 0)
     return reinterpret_cast<T*>(previousValue);
   return NULL;
